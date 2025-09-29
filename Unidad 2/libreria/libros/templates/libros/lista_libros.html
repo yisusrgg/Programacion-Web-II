@@ -14,7 +14,7 @@
                 <tr>
                     <th>Título</th>
                     <th>Autor</th>
-                    <th>PDF</th>
+                    <th>ARCHIVO</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -23,10 +23,10 @@
                 <tr>
                     <td>{{ libro.titulo }}</td>
                     <td>{{ libro.autor }}</td>
-                    <td><a href="{{ libro.pdf.url }}" target="_blank">Descargar PDF</a></td>
+                    <td><a href="{{ libro.pdf.url }}" target="_blank">Descargar ARCHIVO</a></td>
                     <td>
                         <a href="{% url 'editar_libro' libro.pk %}" class="btn btn-warning btn-sm">Editar</a>
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarEliminarModal" onclick="setEliminarId({{ libro.pk }})">
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmarEliminarModal" onclick="setEliminarId({{libro.pk}})">
                             Eliminar
                         </button>
                     </td>

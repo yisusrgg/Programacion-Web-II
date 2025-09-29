@@ -8,7 +8,7 @@ class FormularioLibro(forms.ModelForm):
         labels = {
             'titulo': 'Título',
             'autor': 'Autor',
-            'pdf': 'Archivo PDF',
+            'pdf': 'Archivo (PDF o Imagen)',
         }
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
@@ -17,8 +17,10 @@ class FormularioLibro(forms.ModelForm):
         }
 
     def clean_pdf(self):
-        pdf = self.cleaned_data.get('pdf')
-        if pdf:
-            if not pdf.name.endswith('.pdf'):
-                raise forms.ValidationError("El archivo debe ser un PDF válido.")
-        return pdf
+        archivo = self.cleaned_data.get('pdf')
+        if archivo:
+            extension = archivo.name.split('.')[-1].lower()
+            extensiones_permitidas = ['pdf', 'jpg', 'jpeg', 'png', 'gif']
+            if extension not in extensiones_permitidas:
+                raise forms.ValidationError("El archivo debe ser un PDF o una imagen (JPG, JPEG, PNG, GIF).")
+        return archivo

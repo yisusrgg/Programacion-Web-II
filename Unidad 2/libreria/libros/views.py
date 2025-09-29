@@ -23,4 +23,3 @@ class EditarLibro(UpdateView):
 class EliminarLibro(DeleteView):
     model = Libro
     success_url = reverse_lazy('lista_libros')
-    template_name = 'libros/confirmar_eliminar.html'
